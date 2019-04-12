@@ -9,7 +9,9 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	name, _ := os.Hostname()
-	fmt.Fprintf(w, "Hello there, enemies. I am %s", name)
+
+	// TODO: log request and print to stdout
+	fmt.Fprintf(w, "Hello there, friends. I am %s", name)
 }
 
 func main() {
