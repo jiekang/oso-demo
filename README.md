@@ -1,4 +1,4 @@
-# oso-demo-2018
+# oso-demo
 
 ## docker
 
