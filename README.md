@@ -11,6 +11,12 @@ docker exec -it <id/name> bash
 ## openshift
 
 ```
-oc create -f <template>
-oc new-app <template>
+oc create -f <template.json>
+oc new-app <template-name>
+```
+
+## oc
+
+```
+oc cluster up --public-hostname <ip> --routing-suffix <ip>.nip.io
 ```
