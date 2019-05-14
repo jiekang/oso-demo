@@ -20,3 +20,9 @@ oc new-app <template-name>
 ```
 oc cluster up --public-hostname <ip> --routing-suffix <ip>.nip.io
 ```
+
+### Clean Up Workaround
+
+```
+for i in $(mount | grep openshift | awk '{ print $3}'); do sudo umount "$i"; done && sudo rm -rf ./openshift.local.clusterup
+```
