@@ -15,51 +15,6 @@
   },
   "objects": [
     {
-      "kind": "Service",
-      "apiVersion": "v1",
-      "metadata": {
-        "name": "app-example",
-        "annotations": {
-          "description": "Exposes and load balances the application pods"
-        }
-      },
-      "spec": {
-        "ports": [
-          {
-            "name": "web",
-            "port": 8080,
-            "targetPort": 8080
-          }
-        ],
-        "selector": {
-          "name": "app-example"
-        }
-      }
-    },
-    {
-      "kind": "Route",
-      "apiVersion": "v1",
-      "metadata": {
-        "name": "app-example"
-      },
-      "spec": {
-        "to": {
-          "kind": "Service",
-          "name": "app-example"
-        }
-      }
-    },
-    {
-      "kind": "ImageStream",
-      "apiVersion": "v1",
-      "metadata": {
-        "name": "app-example",
-        "annotations": {
-          "description": "Keeps track of changes in the application image"
-        }
-      }
-    },
-    {
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
@@ -97,6 +52,16 @@
             }
           }
         ]
+      }
+    },
+    {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "app-example",
+        "annotations": {
+          "description": "Keeps track of changes in the application image"
+        }
       }
     },
     {
@@ -156,13 +121,48 @@
           }
         }
       }
+    },
+    {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "app-example",
+        "annotations": {
+          "description": "Exposes and load balances the application pods"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "web",
+            "port": 8080,
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "name": "app-example"
+        }
+      }
+    },
+    {
+      "kind": "Route",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "app-example"
+      },
+      "spec": {
+        "to": {
+          "kind": "Service",
+          "name": "app-example"
+        }
+      }
     }
   ],
   "parameters": [
     {
       "name": "SOURCE_REPOSITORY_URL",
       "description": "The URL of the repository with your application source code",
-      "value": "https://github.com/jiekang/oso-demo-2018.git"
+      "value": "https://github.com/jiekang/oso-demo.git"
     },
     {
       "name": "SOURCE_REPOSITORY_REF",
