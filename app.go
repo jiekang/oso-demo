@@ -11,7 +11,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	name, _ := os.Hostname()
 
 	// TODO: log request and print to stdout
-	fmt.Fprintf(w, "Hello there enemies. I am %s", name)
+	fmt.Fprintf(w, "Hello there friends! I am %s", name)
 }
 
 func main() {
