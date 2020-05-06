@@ -2,7 +2,7 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "app-example",
+    "name": "hello-app",
     "annotations": {
       "description": "An example application in Golang",
       "tags": "quickstart,golang",
@@ -10,15 +10,15 @@
     }
   },
   "labels": {
-      "template": "app-example",
-      "app": "app-example"
+      "template": "template-hello-app",
+      "app": "hello-app"
   },
   "objects": [
     {
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "app-example",
+        "name": "bc-hello-app",
         "annotations": {
           "description": "Defines how to build the application"
         }
@@ -38,7 +38,7 @@
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "app-example:latest"
+            "name": "is-hello-app:latest"
           }
         },
         "triggers": [
@@ -58,7 +58,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "app-example",
+        "name": "is-hello-app",
         "annotations": {
           "description": "Keeps track of changes in the application image"
         }
@@ -68,7 +68,7 @@
       "kind": "DeploymentConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "app-example",
+        "name": "dc-hello-app",
         "annotations": {
           "description": "Defines how to deploy the application server"
         }
@@ -83,11 +83,11 @@
             "imageChangeParams": {
               "automatic": true,
               "containerNames": [
-                "app-example"
+                "hello-app"
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "app-example:latest"
+                "name": "is-hello-app:latest"
               }
             }
           },
@@ -97,20 +97,20 @@
         ],
         "replicas": 1,
         "selector": {
-          "name": "app-example"
+          "name": "hello-app"
         },
         "template": {
           "metadata": {
-            "name": "app-example",
+            "name": "template-hello-app",
             "labels": {
-              "name": "app-example"
+              "name": "hello-app"
             }
           },
           "spec": {
             "containers": [
               {
-                "name": "app-example",
-                "image": "app-example",
+                "name": "hello-app",
+                "image": "hello-app",
                 "ports": [
                   {
                     "containerPort": 8080
@@ -126,7 +126,7 @@
       "kind": "Service",
       "apiVersion": "v1",
       "metadata": {
-        "name": "app-example",
+        "name": "service-hello-app",
         "annotations": {
           "description": "Exposes and load balances the application pods"
         }
@@ -140,7 +140,7 @@
           }
         ],
         "selector": {
-          "name": "app-example"
+          "name": "hello-app"
         }
       }
     },
@@ -148,12 +148,12 @@
       "kind": "Route",
       "apiVersion": "v1",
       "metadata": {
-        "name": "app-example"
+        "name": "route-hello-app"
       },
       "spec": {
         "to": {
           "kind": "Service",
-          "name": "app-example"
+          "name": "service-hello-app"
         }
       }
     }
